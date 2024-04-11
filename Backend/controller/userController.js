@@ -1,12 +1,13 @@
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import { User } from "../models/userSchema.js";
 import ErrorHandler from "../middlewares/errorMiddleware.js";
+import { generateToken } from "../utils/jwtToken.js";
 
 import cloudinary from "cloudinary";
 
 
 export const patientRegister = catchAsyncErrors(async (req, res, next) => {
-    const { firstName, lastName, email, phone, nic, dob, gender, password, role } =
+    const { firstName, lastName, email, phone, dob, gender, password, role } =
       req.body;
     if (
       !firstName ||
@@ -14,7 +15,7 @@ export const patientRegister = catchAsyncErrors(async (req, res, next) => {
       !email ||
       !phone ||
       
-      !nic ||
+     
       !dob ||
       !gender ||
       !password ||
@@ -27,12 +28,10 @@ export const patientRegister = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler("User already register!", 400));
     }
     user = await User.create({
-        firstName, lastName, email, phone, nic, dob, gender, password, role  
+        firstName, lastName, email, phone, dob, gender, password, role  
     })
-    res.status(200).json({
-        sucess:true,
-        message: "User Register Succesfully"
-    })
+    generateToken(user, "User Registered!", 200, res);
+
 })
   
 
@@ -58,5 +57,8 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   if (role !== user.role) {
     return next(new ErrorHandler(`User Not Found With This Role!`, 400));
   }
-  generateToken(user, "Login Successfully!", 201, res);
+  generateToken(user, "User Registered!", 200, res);
+
 });
+
+// to  add a new user

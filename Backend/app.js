@@ -14,7 +14,7 @@ config({path: "./config/config.env"})
 app.use(cors({
     origin: [process.env.FRONTEND_URL_, process.env.DASHBOARD_URL],
     method: ["GET", "POST", "PUT", "DELETE"],
-    credential: true
+    credentials: true
    })
  )
 
