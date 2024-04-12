@@ -14,8 +14,6 @@ export const patientRegister = catchAsyncErrors(async (req, res, next) => {
       !lastName ||
       !email ||
       !phone ||
-      
-     
       !dob ||
       !gender ||
       !password ||
@@ -61,4 +59,21 @@ export const login = catchAsyncErrors(async (req, res, next) => {
 
 });
 
-// to  add a new user
+// to  add a new admin
+
+export const addNewAdmin = catchAsyncErrors(async(req, res, next) =>{
+  const {firstName, lastName, email, phone, password,gender,dob} =
+  req.body;
+  if(!firstName || !lastName || !email || !phone || !password || !gender || dob){
+    return next(new ErrorHandler("Please Fill Full Form!", 400));
+  }
+  const isRegistered = await User.findOne({email});
+  if(isRegistered){
+    return next(new ErrorHandler(`${isRegistered.role} this email is already exists!`, 400));
+  }
+
+})
+
+export const getAllDoctors = catchAsyncErrors(async(req,res,next) =>{
+  const doctors = await User.find()
+})
