@@ -7,7 +7,7 @@ import MessageForm from '../components/MessageForm'
 
 const Home = () => {
   return (
-    <>
+    <>  
      <Hero title={"Welcome to the HospitalEase"} imageUrl = {"/hero.png"}/>
      <Biography/>
      <Departments/>
