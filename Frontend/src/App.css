@@ -587,3 +587,8 @@ input[type="time"]:before {
 footer .logo-img{
   width: 100%;
 }
+
+
+.messageBtn{
+   cursor: pointer;
+}
