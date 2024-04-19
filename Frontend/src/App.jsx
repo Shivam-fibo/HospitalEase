@@ -7,6 +7,7 @@ import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import AboutUs from "./Pages/AboutUs";
 import Navbar from "./components/Navbar";
+import {ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.min.css";
 import { Context } from "./main";
 import { useContext } from "react";
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
         </Routes>
         <Footer/>
+        <ToastContainer position="bottom-right" />
       </Router>
     </>
   );
