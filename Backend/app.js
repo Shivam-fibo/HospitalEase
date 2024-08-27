@@ -13,34 +13,34 @@ const app = express();
 config({path: "./config/config.env"})
 
 
-app.use(cors({
-  origin: ['http://localhost:5173' , 'http://localhost:5174'] ,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+  app.use(cors({
+    origin: ['http://localhost:5173' , 'http://localhost:5174'] ,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+  }));
 
-// app.use(
-//   cors({
-//     origin: [process.env.FRONTEND_URL_ONE, process.env.FRONTEND_URL_TWO],
-//     method: ["GET", "POST", "DELETE", "PUT"],
-//     credentials: true,
-//   })
-// );
+  // app.use(
+  //   cors({
+  //     origin: [process.env.FRONTEND_URL_ONE, process.env.FRONTEND_URL_TWO],
+  //     method: ["GET", "POST", "DELETE", "PUT"],
+  //     credentials: true,
+  //   })
+  // );
 
 
- // to get the value of our cookie
- app.use(cookieParser())
- // to convet the json data into the string
- app.use(express.json())
- app.use(express.urlencoded({extended:true}))
- app.use(fileUpload({
-    useTempFiles:true,
-    tempFileDir:"/temp"
-   }))
-   
-   app.use("/api/v1/message", messageRouter);
-   app.use("/api/v1/user",userRouter)
-   app.use('/api/v1/appointment', appointmentRouter)
-   app.use(errorMiddleware)
- dbConnection()
-export default app
+  // to get the value of our cookie
+  app.use(cookieParser())
+  // to convet the json data into the string
+  app.use(express.json())
+  app.use(express.urlencoded({extended:true}))
+  app.use(fileUpload({
+      useTempFiles:true,
+      tempFileDir:"/temp"
+    }))
+    
+    app.use("/api/v1/message", messageRouter);
+    app.use("/api/v1/user",userRouter)
+    app.use('/api/v1/appointment', appointmentRouter)
+    app.use(errorMiddleware)
+  dbConnection()
+  export default app

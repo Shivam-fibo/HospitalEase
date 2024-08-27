@@ -1,84 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaLocationArrow, FaPhone } from "react-icons/fa6";
+import { FaMapMarkerAlt, FaPhone, FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 const Footer = () => {
-  const hours = [
-    {
-      id: 1,
-      day: "Monday",
-      time: "9:00 AM - 11:00 PM",
-    },
-    {
-      id: 2,
-      day: "Tuesday",
-      time: "12:00 PM - 12:00 AM",
-    },
-    {
-      id: 3,
-      day: "Wednesday",
-      time: "10:00 AM - 10:00 PM",
-    },
-    {
-      id: 4,
-      day: "Thursday",
-      time: "9:00 AM - 9:00 PM",
-    },
-    {
-      id: 5,
-      day: "Monday",
-      time: "3:00 PM - 9:00 PM",
-    },
-    {
-      id: 6,
-      day: "Saturday",
-      time: "9:00 AM - 3:00 PM",
-    },
-  ];
-
   return (
     <>
-      <footer className={"container"}>
-        <hr />
-        <div className="content">
-        <div>
-            
-        </div>
-          <div>
+      <footer className="hospital-footer">
+        <div className="footer-top">
+          <div className="footer-section">
+            <h4>About Us</h4>
+            <p>We are dedicated to providing the best healthcare services to our patients. Our hospital is equipped with state-of-the-art facilities and a team of experienced professionals.</p>
+          </div>
+          <div className="footer-section">
             <h4>Quick Links</h4>
             <ul>
-              <Link to={"/"}>Home</Link>
-              <Link to={"/appointment"}>Appointment</Link>
-              <Link to={"/about"}>About</Link>
+              <li><Link to={"/"} >Home</Link></li>
+              <li><Link to={"/appointment"}>Appointment</Link></li>
+              <li><Link to={"/about"}>About Us</Link></li>
+             
             </ul>
           </div>
-          <div>
-            <h4>Hours</h4>
-            <ul>
-              {hours.map((element) => (
-                <li key={element.id}>
-                  <span>{element.day}</span>
-                  <span>{element.time}</span>
-                </li>
-              ))}
-            </ul>
+          <div className="footer-section">
+            <h4>Contact Us</h4>
+            <div><FaPhone /><span>999-999-9999</span></div>
+            <div><MdEmail /><span>contact@hospital.com</span></div>
+            <div><FaMapMarkerAlt /><span>123 Hospital St, City, Country</span></div>
           </div>
-          <div>
-            <h4>Contact</h4>
-            <div>
-              <FaPhone />
-              <span>999-999-9999</span>
-            </div>
-            <div>
-              <MdEmail />
-              <span>shivam@gmail.com</span>
-            </div>
-            <div>
-              <FaLocationArrow />
-              <span>Uttar Pradesh, India</span>
-            </div>
-          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; 2024 HospitalEase. All rights reserved.</p>
         </div>
       </footer>
     </>

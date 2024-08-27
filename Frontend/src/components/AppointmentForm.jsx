@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import Calendar from 'react-calendar';
+
 
 const AppointmentForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -11,9 +13,7 @@ const AppointmentForm = () => {
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
   const [appointmentDate, setAppointmentDate] = useState("");
-  const [department, setDepartment] = useState("Pediatrics");
-  const [doctorFirstName, setDoctorFirstName] = useState("");
-  const [doctorLastName, setDoctorLastName] = useState("");
+  const [department, setDepartment] = useState("Selecet Department ");
   const [address, setAddress] = useState("");
   const [hasVisited, setHasVisited] = useState(false);
 
@@ -29,18 +29,6 @@ const AppointmentForm = () => {
     "ENT",
   ];
 
-  const [doctors, setDoctors] = useState([]);
-  useEffect(() => {
-    const fetchDoctors = async () => {
-      const { data } = await axios.get(
-        "http://localhost:4000/api/v1/user/doctors",
-        { withCredentials: true }
-      );
-      setDoctors(data.doctors);
-      console.log(data.doctors);
-    };
-    fetchDoctors();
-  }, []);
   const handleAppointment = async (e) => {
     e.preventDefault();
     try {
@@ -56,8 +44,7 @@ const AppointmentForm = () => {
           gender,
           appointment_date: appointmentDate,
           department,
-          doctor_firstName: doctorFirstName,
-          doctor_lastName: doctorLastName,
+        
           hasVisited: hasVisitedBool,
           address,
         },
@@ -75,8 +62,7 @@ const AppointmentForm = () => {
         setGender(""),
         setAppointmentDate(""),
         setDepartment(""),
-        setDoctorFirstName(""),
-        setDoctorLastName(""),
+      
         setHasVisited(""),
         setAddress("");
     } catch (error) {
@@ -118,7 +104,6 @@ const AppointmentForm = () => {
             />
           </div>
           <div>
-       
             <input
               type="date"
               placeholder="Date of Birth"
@@ -141,13 +126,14 @@ const AppointmentForm = () => {
           </div>
           <div>
             <select
+
               value={department}
               onChange={(e) => {
                 setDepartment(e.target.value);
-                setDoctorFirstName("");
-                setDoctorLastName("");
+              
               }}
             >
+              <option value="">Select department</option>
               {departmentsArray.map((depart, index) => {
                 return (
                   <option value={depart} key={index}>
@@ -156,27 +142,7 @@ const AppointmentForm = () => {
                 );
               })}
             </select>
-            <select
-              value={`${doctorFirstName} ${doctorLastName}`}
-              onChange={(e) => {
-                const [firstName, lastName] = e.target.value.split(" ");
-                setDoctorFirstName(firstName);
-                setDoctorLastName(lastName);
-              }}
-              disabled={!department}
-            >
-              <option value="">Select Doctor</option>
-              {doctors
-                .filter((doctor) => doctor.doctorDepartment === department)
-                .map((doctor, index) => (
-                  <option
-                    value={`${doctor.firstName} ${doctor.lastName}`}
-                    key={index}
-                  >
-                    {doctor.firstName} {doctor.lastName}
-                  </option>
-                ))}
-            </select>
+          
           </div>
           <textarea
             rows="10"

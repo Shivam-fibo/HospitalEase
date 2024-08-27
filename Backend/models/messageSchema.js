@@ -26,7 +26,7 @@ const messageSchema = new mongoose.Schema({
   message: {
     type: String,
     required: true,
-    minLength: [10, "Message Must Contain At Least 10 Characters!"],
+    minLength: [5, "Message Must Contain At Least 5 Characters!"],
   },
 });
  
