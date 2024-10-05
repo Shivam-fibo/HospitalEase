@@ -8,7 +8,6 @@ import {
 } from "../controller/appointmentController.js";
 import {
   isAdminAuthenticated,
-
   isPatientAuthenticated,
 } from "../middlewares/auth.js";
 
